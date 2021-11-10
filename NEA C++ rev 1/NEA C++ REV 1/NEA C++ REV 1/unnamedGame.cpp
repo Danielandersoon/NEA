@@ -25,8 +25,8 @@ int playerIdleFrames = 2;
 int playerWalkFrames = 6;
 int playerIdleSpeed = 9;
 int playerWalkSpeed = 7;
-int spriteWidth = 64;
-int spriteHeight = 64;
+int spriteWidth = 180;
+int spriteHeight = 180;
 int damageThreshold = 15;
 //create render window
 sf::Clock gamesClock;
@@ -230,66 +230,6 @@ public:
 };
 
 using namespace sf;
-void menu()
-{
-	while (app.isOpen())
-	{
-
-		int point = 1;
-
-		//close app
-		Event event;
-		while (app.pollEvent(event))
-		{
-			if (event.type == Event::Closed)
-				app.close();
-		};
-
-		int menuIndex[5] = { 1, 2, 3, 4, 5 };
-
-		if (Keyboard::isKeyPressed(Keyboard::Down))
-			if (point < 5)
-				point++;
-		if (Keyboard::isKeyPressed(Keyboard::Up))
-			if (point > 1)
-				point = point - 1;
-
-		//option 1: start game
-		if ((menuIndex[point] == 1) && (Keyboard::isKeyPressed(Keyboard::Return)))
-		{
-			app.clear();
-			int characterSelect();
-			void game();
-		}
-		if ((menuIndex[point] == 1) && (Keyboard::isKeyPressed(Keyboard::Return)))
-		{
-			app.clear();
-			int characterSelect();
-			void multiplayer();
-		}
-		//option 3: further options
-		if ((menuIndex[point] == 3) && (Keyboard::isKeyPressed(Keyboard::Return)))
-		{
-			app.clear();
-			point = 1;
-
-		}
-		//option 4: view leaderoard
-		if ((menuIndex[point] == 4) && (Keyboard::isKeyPressed(Keyboard::Return)))
-		{
-			app.clear();
-			void leaderboard();
-		}
-		//option 5: login/sign up
-		if ((menuIndex[point] == 5) && (Keyboard::isKeyPressed(Keyboard::Return)))
-		{
-			app.clear();
-			void signIn();
-		}
-	};
-};
-
-using namespace sf;
 int characterSelect()
 {
 	while (app.isOpen())
@@ -481,7 +421,6 @@ void socketComunication()
 	if (connectionStatus != Socket::Done)
 	{
 		app.clear();
-		menu();
 	}
 };
 
@@ -505,12 +444,70 @@ void leaderboard()
 
 };
 
+using namespace sf;
+void menu()
+{
+	while (app.isOpen())
+	{
+
+		int point = 1;
+
+		//close app
+		Event event;
+		while (app.pollEvent(event))
+		{
+			if (event.type == Event::Closed)
+				app.close();
+		};
+
+		int menuIndex[5] = { 1, 2, 3, 4, 5 };
+
+		if (Keyboard::isKeyPressed(Keyboard::Down))
+			if (point < 5)
+				point++;
+		if (Keyboard::isKeyPressed(Keyboard::Up))
+			if (point > 1)
+				point = point - 1;
+
+		//option 1: start game
+		if ((menuIndex[point] == 1) && (Keyboard::isKeyPressed(Keyboard::Return)))
+		{
+			app.clear();
+			int characterSelect();
+			void game();
+		}
+		if ((menuIndex[point] == 1) && (Keyboard::isKeyPressed(Keyboard::Return)))
+		{
+			app.clear();
+			int characterSelect();
+			void multiplayer();
+		}
+		//option 3: further options
+		if ((menuIndex[point] == 3) && (Keyboard::isKeyPressed(Keyboard::Return)))
+		{
+			app.clear();
+			point = 1;
+
+		}
+		//option 4: view leaderoard
+		if ((menuIndex[point] == 4) && (Keyboard::isKeyPressed(Keyboard::Return)))
+		{
+			app.clear();
+			void leaderboard();
+		}
+		//option 5: login/sign up
+		if ((menuIndex[point] == 5) && (Keyboard::isKeyPressed(Keyboard::Return)))
+		{
+			app.clear();
+			void signIn();
+		}
+	};
+};
+
 //main function
 int main()
 {
 	menu();
 	app.clear();
-	//characterSelect();
-	//game();
 	return 0;
 };
