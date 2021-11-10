@@ -447,7 +447,7 @@ void game()
 		playerOBB.onGround = false;
 		enemyOBB.onGround = false;
 		playerOBB.inputPolling();
-		enemyOBB.movement(onGround, directionRight, right, left, jump, down, punch1, punch2, kick1, kick2);
+		enemyOBB.movement(enemyOBB.onGround, enemyOBB.directionRight, enemyOBB.right, enemyOBB.left, enemyOBB.jump, enemyOBB.down, enemyOBB.punch1, enemyOBB.punch2, enemyOBB.kick1, enemyOBB.kick2);
 		//playerOBB.update();
 		//enemyOBB.update();
 		playerOBB.collide();
