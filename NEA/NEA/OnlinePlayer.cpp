@@ -1,0 +1,281 @@
+#include <algorithm>
+#include <iostream>
+#include "OnlinePlayer.h"
+#include "CommandQueue.h"
+#include "Actor.h"
+#include "State.h"
+
+OnlinePlayer::OnlinePlayer()
+	: currentMissionStatus(MissionStatus::Running)
+	, audioQueues()
+	, p2Timer(sf::Clock())
+
+{
+	initializeKeyBindings();
+	initializeActions();
+}
+
+void OnlinePlayer::initializeKeyBindings()
+{
+	keyBindings[sf::Keyboard::A] = Action::P1MoveLeft;
+	keyBindings[sf::Keyboard::D] = Action::P1MoveRight;
+	keyBindings[sf::Keyboard::W] = Action::P1MoveUp;
+	keyBindings[sf::Keyboard::S] = Action::P1MoveDown;
+	keyBindings[sf::Keyboard::C] = Action::P1Attack;
+
+	/*
+	*replace keybindings with data passed across  network 
+	*
+	*keyBindings2[sf::Keyboard::Left] = Action::P2MoveLeft;
+	*keyBindings2[sf::Keyboard::Right] = Action::P2MoveRight;
+	*keyBindings2[sf::Keyboard::Up] = Action::P2MoveUp;
+	*keyBindings2[sf::Keyboard::Down] = Action::P2MoveDown;
+	*keyBindings2[sf::Keyboard::M] = Action::P2Attack;
+	*/
+}
+
+void OnlinePlayer::handleEvent(const sf::Event& event, CommandQueue& commands)
+{
+	if (event.type == sf::Event::KeyPressed)
+	{
+		// Check if pressed key appears in key binding, trigger command if so
+		auto found = keyBindings.find(event.key.code);
+		if (found != keyBindings.end())
+			commands.push(actionBindings[found->second]);
+
+		auto found2 = keyBindings2.find(event.key.code);
+		if (found2 != keyBindings2.end())
+			commands.push(actionBindings2[found2->second]);
+	}
+}
+
+void OnlinePlayer::handleRealTimeInput(CommandQueue& commands)
+{
+	for (auto pair : keyBindings) {
+		if (sf::Keyboard::isKeyPressed(pair.first) && isRealTimeAction(pair.second)) {
+			commands.push(actionBindings[pair.second]);
+		}
+	}
+	for (auto pair : keyBindings2) {
+		if (sf::Keyboard::isKeyPressed(pair.first) && isRealTimeAction(pair.second)) {
+			commands.push(actionBindings2[pair.second]);
+		}
+	}
+}
+
+
+void OnlinePlayer::setMissionStatus(MissionStatus status)
+{
+	currentMissionStatus = status;
+}
+
+OnlinePlayer::MissionStatus OnlinePlayer::getMissionStatus() const
+{
+	return currentMissionStatus;
+}
+
+
+void OnlinePlayer::initializeActions()
+{
+	const float OnlinePlayerSpeed = 5.f;
+	const float jumpSpeed = 1500.f;
+
+
+	actionBindings[Action::P1MoveLeft].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			if (a.getDirection() != Actor::Direction::Left) {
+				a.setScale(-1 * a.getScale().x, a.getScale().y);
+				a.setDirection(Actor::Direction::Left);
+			}
+			if (a.getState() != Actor::State::Run && a.getPosition().y >= a.groundHeight)
+				a.setState(Actor::State::Run);
+			else {
+
+			}
+			a.setVelocity(sf::Vector2f(-OnlinePlayerSpeed, 0.f));
+			a.move(sf::Vector2f(-OnlinePlayerSpeed, 0.f));
+
+
+		});
+	actionBindings[Action::P1MoveRight].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			if (a.getDirection() != Actor::Direction::Right) {
+				a.setScale(-1 * a.getScale().x, a.getScale().y);
+				a.setDirection(Actor::Direction::Right);
+			}
+			if (a.getState() != Actor::State::Run && a.getPosition().y >= a.groundHeight)
+				a.setState(Actor::State::Run);
+			else {
+
+			}
+
+			a.setVelocity(sf::Vector2f(10.f, 0.f));
+			a.move(sf::Vector2f(OnlinePlayerSpeed, 0.f));
+
+		});
+
+	actionBindings[Action::P1MoveUp].action = derivedAction<Actor>(
+		[jumpSpeed](Actor& a, sf::Time dt) {
+			auto OnlinePlayerPosfromTop = a.getBoundingRect().height
+				+ a.getPosition().y;
+			if (a.getPosition().y >= a.groundHeight) {
+
+
+				if (OnlinePlayerPosfromTop > 650.f) {
+					if (!a.isJumping && !a.isFalling)
+					{
+						a.isJumping = true;
+						a.TimeThisJump = 0;
+						a.JustJumped = true;
+					}
+					a.setState(Actor::State::Jump);
+					a.accelerate(0.f, -jumpSpeed * 15);
+
+					a.isJumping = false;
+					a.isFalling = true;
+
+				}
+				a.isGrounded = true;
+			}
+		});
+	actionBindings[Action::P1MoveDown].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			//the falling is going to be managed when jump animation is finished
+			if (!a.isGrounded) {
+				a.setState(Actor::State::Fall);
+				a.accelerate(sf::Vector2f(0.f, OnlinePlayerSpeed));
+			}
+			else {
+				a.setState(Actor::State::Idle);
+				a.isBlocking = true;
+			}
+		});
+	actionBindings[Action::P1Attack].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			if (a.getState() == Actor::State::Attack2 && a.isCurrentAnimationFinished()) {
+				a.setState(Actor::State::Idle);
+			}
+			if (a.getState() == Actor::State::Attack1 && a.isCurrentAnimationFinished()) {
+				a.setState(Actor::State::Attack2);
+			}
+
+			if (a.getState() == Actor::State::Idle || a.getState() == Actor::State::Run) {
+				a.setState(Actor::State::Attack1);
+			}
+
+		});
+
+	actionBindings2[Action::P2MoveLeft].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			if (a.getDirection() != Actor::Direction::Left) {
+				a.setScale(-1 * a.getScale().x, a.getScale().y);
+				a.setDirection(Actor::Direction::Left);
+			}
+			if (a.getState() != Actor::State::Run && a.getPosition().y >= a.groundHeight)
+				a.setState(Actor::State::Run);
+
+			a.setVelocity(sf::Vector2f(-OnlinePlayerSpeed, 0.f));
+			a.move(sf::Vector2f(-OnlinePlayerSpeed, 0.f));
+
+
+		});
+	actionBindings2[Action::P2MoveRight].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+
+
+			if (a.getDirection() != Actor::Direction::Right) {
+				a.setScale(-1 * a.getScale().x, a.getScale().y);
+				a.setDirection(Actor::Direction::Right);
+			}
+			if (a.getState() != Actor::State::Run && a.getPosition().y >= a.groundHeight)
+				a.setState(Actor::State::Run);
+
+
+			a.setVelocity(sf::Vector2f(10.f, 0.f));
+			a.move(sf::Vector2f(OnlinePlayerSpeed, 0.f));
+
+		});
+	//make this an event
+	actionBindings2[Action::P2MoveUp].action = derivedAction<Actor>(
+		[=](Actor& a, sf::Time dt) {
+			auto OnlinePlayerPosfromTop = a.getBoundingRect().height
+				+ a.getPosition().y;
+
+			if (a.getPosition().y >= a.groundHeight) {
+
+				//max jump height is 650
+				if (OnlinePlayerPosfromTop > 650.f) {
+					if (!a.isJumping && !a.isFalling)
+					{
+						a.isJumping = true;
+						a.TimeThisJump = 0;
+						a.JustJumped = true;
+					}
+					a.setState(Actor::State::Jump);
+					a.accelerate(0.f, -jumpSpeed * 15);
+
+
+					a.isJumping = false;
+					a.isFalling = true;
+
+				}
+				a.isGrounded = true;
+			}
+		});
+	actionBindings2[Action::P2MoveDown].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			//the falling is going to be managed when jump animation is finished
+			if (!a.isGrounded) {
+				a.setState(Actor::State::Fall);
+				a.accelerate(sf::Vector2f(0.f, OnlinePlayerSpeed));
+			}
+			else {
+				a.isBlocking = true;
+			}
+		});
+	actionBindings2[Action::P2Attack].action = derivedAction<Actor>(
+		[OnlinePlayerSpeed](Actor& a, sf::Time dt) {
+			if (a.getState() == Actor::State::Attack2 && a.isCurrentAnimationFinished()) {
+				a.setState(Actor::State::Idle);
+
+			}
+			if (a.getState() == Actor::State::Attack1 && a.isCurrentAnimationFinished()) {
+				a.setState(Actor::State::Attack2);
+			}
+
+			if (a.getState() == Actor::State::Idle || a.getState() == Actor::State::Run) {
+				a.setState(Actor::State::Attack1);
+			}
+		});
+
+
+	for (auto& pair : actionBindings) {
+		pair.second.category = Category::Player1;
+	}
+
+	for (auto& pair : actionBindings2) {
+		pair.second.category = Category::Player2;
+	}
+}
+
+bool OnlinePlayer::isRealTimeAction(Action action)
+{
+	switch (action)
+	{
+	case Action::P1MoveLeft:
+	case Action::P2MoveLeft:
+	case Action::P1MoveRight:
+	case Action::P2MoveRight:
+	case Action::P1MoveDown:
+	case Action::P2MoveDown:
+	case Action::P1Attack:
+	case Action::P2Attack:
+		return true;
+		break;
+	case Action::P1MoveUp:
+	case Action::P2MoveUp:
+	default:
+		return false;
+		break;
+	}
+}

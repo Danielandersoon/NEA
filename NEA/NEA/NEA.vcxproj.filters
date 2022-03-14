@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{e6fefb8f-03e8-49f2-b90d-ff5981a84949}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\Source">
+      <UniqueIdentifier>{141245ae-6fb2-4425-9ced-7dcdb4217be8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States\Header">
+      <UniqueIdentifier>{97462286-46f3-4a56-9da9-4e6bd2fb27fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node">
+      <UniqueIdentifier>{6c9fcd9f-f7d1-4143-b4cb-d4f8f16c4efe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node\Header">
+      <UniqueIdentifier>{3529810c-6d32-4f26-85b0-1e92e5e32152}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Node\Source">
+      <UniqueIdentifier>{b93e80aa-f0fe-44c4-9867-57fbfdf6796b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Utility.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Actor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CommandQueue.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonFrameParser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MusicPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkConnection.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OnlinePlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneNode.cpp">
+      <Filter>Node\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteNode.cpp">
+      <Filter>Node\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TextNode.cpp">
+      <Filter>Node\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="AudioNode.cpp">
+      <Filter>Node\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="InitOnlineState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MapSelectionState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="OnlineGameState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="OptionsState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomMatchState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="RoundOverState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="State.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="StateStack.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="TitleState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSelectionState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="ControllState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="GameOverState.cpp">
+      <Filter>States\Source</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="World.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Actor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Category.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandQueue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTables.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Json.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonFrameParser.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkConnection.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlinePlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceIdentifier.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="settings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tempSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureHolder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpriteNode.h">
+      <Filter>Node\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TextNode.h">
+      <Filter>Node\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="AudioNode.h">
+      <Filter>Node\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneNode.h">
+      <Filter>Node\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="StateIdentifiers.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="StateStack.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="TitleState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSelectionState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="ControllState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameOverState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="GameState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="InitOnlineState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MapSelectionState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="OnlineGameState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMatchState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="RoundOverState.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>States\Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

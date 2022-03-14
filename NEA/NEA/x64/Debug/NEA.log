@@ -1,0 +1,51 @@
+﻿  Actor.cpp
+C:\Users\019861\Desktop\NEA1\NEA\NEA\Actor.cpp(40,1): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Users\019861\Desktop\NEA1\NEA\NEA\Actor.cpp(105,52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Animation.cpp
+  Animation2.cpp
+  Application.cpp
+C:\Users\019861\Desktop\NEA1\NEA\NEA\Application.cpp(22,186): error C2440: '<function-style-cast>': cannot convert from 'initializer list' to 'State::Context'
+C:\Users\019861\Desktop\NEA1\NEA\NEA\Application.cpp(22,186): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\019861\Desktop\NEA1\NEA\NEA\Application.cpp(22,17): error C2512: 'StateStack::StateStack': no appropriate default constructor available
+  AudioNode.cpp
+  CharacterSelectionState.cpp
+  Command.cpp
+  CommandQueue.cpp
+  ControllState.cpp
+  DataTables.cpp
+  Entity.cpp
+  GameOverState.cpp
+  GameState.cpp
+  InitOnlineState.cpp
+  JsonFrameParser.cpp
+  MapSelectionState.cpp
+  MenuState.cpp
+  MusicPlayer.cpp
+  NetworkConnection.cpp
+  OnlineGameState.cpp
+  Generating Code...
+  Compiling...
+  OnlinePlayer.cpp
+  OptionsState.cpp
+  PauseState.cpp
+  Player.cpp
+  RandomMatchState.cpp
+  RoundOverState.cpp
+  SceneNode.cpp
+  Source.cpp
+  SpriteNode.cpp
+  State.cpp
+C:\Users\019861\Desktop\NEA1\NEA\NEA\State.cpp(44,2): error C2511: 'State::Context::Context(sf::RenderWindow &,TextureHolder_t &,FontHolder_t &,Player &,MusicPlayer &,AudioPlayer &,Actor::Type &,Actor::Type &,std::string &,std::string &,std::string &,std::string &)': overloaded member function not found in 'State::Context'
+C:\Users\019861\Desktop\NEA1\NEA\NEA\State.h(28): message : see declaration of 'State::Context'
+C:\Users\019861\Desktop\NEA1\NEA\NEA\State.cpp(47,1): error C2550: 'State::Context::{ctor}': constructor initializer lists are only allowed on constructor definitions
+  StateStack.cpp
+  TextNode.cpp
+  TextureHolder.cpp
+  TitleState.cpp
+  Utility.cpp
+C:\Users\019861\Desktop\NEA1\NEA\NEA\Utility.cpp(9,28): warning C4305: 'initializing': truncation from 'double' to 'float'
+  World.cpp
+C:\Users\019861\Desktop\NEA1\NEA\NEA\World.cpp(94,33): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\019861\Desktop\NEA1\NEA\NEA\World.cpp(100,34): warning C4305: '-=': truncation from 'double' to 'float'
+C:\Users\019861\Desktop\NEA1\NEA\NEA\World.cpp(120,20): warning C4305: '-=': truncation from 'double' to 'float'
+  Generating Code...
