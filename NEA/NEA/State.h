@@ -14,9 +14,9 @@ namespace sf
 
 class StateStack;
 class Player;
-class OnlinePlayer;
+//class OnlinePlayer;
 class Player2;
-class OnlinePlayer2;
+//class OnlinePlayer2;
 class MusicPlayer;
 class SoundPlayer;
 
@@ -31,7 +31,7 @@ public:
 			TextureHolder_t& textures,
 			FontHolder_t& fonts,
 			Player& player,
-			OnlinePlayer& OnlinePlayer,
+			//OnlinePlayer& OnlinePlayer,
 			MusicPlayer& music,
 			AudioPlayer& audioQueues,
 			Actor::Type& p1Char,
@@ -46,7 +46,7 @@ public:
 		TextureHolder_t* textures;
 		FontHolder_t* fonts;
 		Player* player;
-		OnlinePlayer* OnlinePlayer;
+		//OnlinePlayer* OnlinePlayer;
 		MusicPlayer* music;
 		AudioPlayer* audioQueues;
 		Actor::Type* p1Char;
